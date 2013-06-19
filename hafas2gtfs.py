@@ -18,23 +18,25 @@ from datetime import datetime
 from collections import defaultdict
 
 import unicodecsv
-from pyproj import Proj
+import projector
 from bitstring import Bits
 
 
-projector_utm = Proj(proj='utm', zone=32, ellps='WGS84')
-projector_gk = Proj(proj='tmerc', ellps='bessel', lon_0='9d0E',
-    lat_0='0', x_0='500000')
 
 
-def convert_utm(x, y):
-    lon, lat = projector_utm(x, y, inverse=True)
-    return lon, lat
+# projector_utm = Proj(proj='utm', zone=32, ellps='WGS84')
+# projector_gk = Proj(proj='tmerc', ellps='bessel', lon_0='9d0E',
+#     lat_0='0', x_0='500000')
 
 
-def convert_gk(x, y):
-    lon, lat = projector_gk(x, y, inverse=True)
-    return lon, lat
+# def convert_utm(x, y):
+#     lon, lat = projector_utm(x, y, inverse=True)
+#     return lon, lat
+
+
+# def convert_gk(x, y):
+#     lon, lat = projector_gk(x, y, inverse=True)
+#     return lon, lat
 
 
 GTFS_FILES = {
@@ -256,7 +258,7 @@ class Hafas2GTFS(object):
             stop_id = int(line[:7].strip())
             x = float(line[8:18].strip())
             y = float(line[19:29].strip())
-            lat, lon = convert_gk(x, y)
+            lat, lon = projector.convert_gk(x, y)
             self.stops[stop_id].update({
                 'lat': lat,
                 'lon': lon
