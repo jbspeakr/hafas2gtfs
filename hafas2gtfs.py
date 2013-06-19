@@ -22,23 +22,6 @@ import projector
 from bitstring import Bits
 
 
-
-
-# projector_utm = Proj(proj='utm', zone=32, ellps='WGS84')
-# projector_gk = Proj(proj='tmerc', ellps='bessel', lon_0='9d0E',
-#     lat_0='0', x_0='500000')
-
-
-# def convert_utm(x, y):
-#     lon, lat = projector_utm(x, y, inverse=True)
-#     return lon, lat
-
-
-# def convert_gk(x, y):
-#     lon, lat = projector_gk(x, y, inverse=True)
-#     return lon, lat
-
-
 GTFS_FILES = {
     'agency.txt': ('agency_id', 'agency_name', 'agency_url', 'agency_timezone', 'agency_lang', 'agency_phone'),
     'routes.txt': ('route_id', 'agency_id', 'route_short_name', 'route_long_name', 'route_desc', 'route_type', 'route_url', 'route_color', 'route_text_color'),
